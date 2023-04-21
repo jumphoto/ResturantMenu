@@ -1,0 +1,123 @@
+/* You can add global styles to this file, and also import other style files */
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+}
+
+// Mixin for setting the h and p tag's font-size, font-weight & line-height
+@mixin font-props($fs, $fw, $lh) {
+  font-size: $fs;
+  font-weight: $fw;
+  line-height: $lh;
+}
+
+%font-style-spacing {
+  font-style: normal;
+  letter-spacing: 0.015em;
+}
+
+@mixin h1 {
+  @extend %font-style-spacing;
+  @include font-props(2.75rem, 700, 3.5rem);
+}
+
+@mixin h2 {
+  @extend %font-style-spacing;
+  @include font-props(2rem, 600, 2.25rem);
+}
+
+@mixin h3 {
+  @extend %font-style-spacing;
+  @include font-props(1.5rem, 700, 1.8125rem);
+}
+
+@mixin h4 {
+  @extend %font-style-spacing;
+  @include font-props(1.25rem, 700, 1.625rem);
+}
+
+@mixin h5 {
+  @extend %font-style-spacing;
+  @include font-props(1.0625rem, 600, 1.325rem);
+}
+
+h1,
+.h1 {
+  @include h1;
+}
+
+h2,
+.h2 {
+  @include h2;
+}
+
+h3,
+.h3 {
+  @include h3;
+}
+
+h4,
+.h4 {
+  @include h4;
+}
+
+h5,
+.h5 {
+  @include h5;
+}
+
+@mixin p1 {
+  @extend %font-style-spacing;
+  @include font-props(1rem, 400, 1.625rem);
+  margin-top: 0;
+}
+
+@mixin p2 {
+  @extend %font-style-spacing;
+  @include font-props(1rem, 600, 1.625rem);
+  margin-top: 0;
+}
+
+@mixin p3 {
+  @extend %font-style-spacing;
+  @include font-props(0.875rem, 600, 1.25rem);
+  margin-top: 0;
+}
+
+@mixin p4 {
+  @extend %font-style-spacing;
+  @include font-props(0.75rem, 600, 1rem);
+  margin-top: 0;
+}
+
+@mixin p5 {
+  @include font-props(0.625rem, 700, 0.8125rem);
+  font-style: normal;
+  letter-spacing: 0.02em;
+  margin-top: 0;
+}
+
+.p1 {
+  @include p1;
+}
+
+.p2 {
+  @include p2;
+}
+
+.p3 {
+  @include p3;
+}
+
+.p4 {
+  @include p4;
+}
+
+.p5 {
+  @include p5;
+}
