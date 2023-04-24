@@ -134,7 +134,7 @@ export class BackendService {
 
     const ingredients = Array.from({ length: 6 }, (_, i: number) => `Ingredient number ${i + 1}`);
 
-    return lastValueFrom(of(new MenuItemMetadata(ingredients)).pipe(delay(serverDelay)));
+    return lastValueFrom(of(new MenuItemMetadata(ingredients, '')).pipe(delay(serverDelay)));
   }
 
   /**
