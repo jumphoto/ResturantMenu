@@ -4,7 +4,10 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 50vh;
+  width: 50%;
+  max-width: 2520px;
+  height: 560px;
+  border: 2px solid #000;
 }
 
 .logo {
@@ -13,8 +16,8 @@
 }
 
 .open-menu-btn {
-  background-color: #007bff;
-  color: #fff;
+  background-color: #5bb780;
+  color: #000;
   border: none;
   padding: 10px 20px;
   border-radius: 5px;
