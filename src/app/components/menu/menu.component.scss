@@ -4,4 +4,45 @@
   max-width: 2520px;
   height: 560px;
   border: 2px solid #000;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .verticle-line {
+    background-color: #000;
+    height: 560px;
+    left: 50%;
+    position: absolute;
+    transform: transitionX(-50%);
+    top: 0;
+    width: 2px;
+  }
+}
+
+.menu-column {
+  width: calc(50% - 20px);
+  margin: 10px;
+}
+
+.menu-section {
+  margin-bottom: 20px;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.close-menu-btn {
+  position: fixed;
+  bottom: 150px;
+  right: 20px;
+  background-color: #8732c8;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
 }

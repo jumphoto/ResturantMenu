@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { CoverComponent } from '../cover/cover.component';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-menu',
@@ -9,4 +10,10 @@ import { CoverComponent } from '../cover/cover.component';
   standalone: true,
   imports: [CommonModule, CoverComponent],
 })
-export class MenuComponent {}
+export class MenuComponent {
+  constructor(private router: Router) {}
+
+  closeMenu() {
+    this.router.navigate(['/cover']);
+  }
+}
