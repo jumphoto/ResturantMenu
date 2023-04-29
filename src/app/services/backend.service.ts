@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { delay, lastValueFrom, of } from 'rxjs';
+import { delay, lastValueFrom, map, of } from 'rxjs';
 import { MenuItem, MenuItemMetadata, MenuItemTypeEnum } from '../modules/menu-item';
 import { shuffleArray } from '../utils/array-functions';
 import { getRandomNumberBetween, uuidv4 } from '../utils/common-functions';
@@ -98,6 +98,7 @@ export class BackendService {
    *
    * @returns All menu items, exluding the chef's specials
    */
+
   fetchMenuItems(): Promise<MenuItem[]> {
     const serverDelay = getRandomNumberBetween(1000, 2000);
     const serverDown = getRandomNumberBetween(0, 100) > 95;
@@ -110,7 +111,22 @@ export class BackendService {
     }
 
     return lastValueFrom(
-      of(shuffleArray([...this.#appetizers, ...this.#mainCourses, ...this.#desserts])).pipe(delay(serverDelay)),
+      of(shuffleArray([...this.#appetizers, ...this.#mainCourses, ...this.#desserts]))
+        .pipe(delay(serverDelay))
+        .pipe(
+          map((menuItems: any[]) => {
+            const appetizers = menuItems.filter(
+              (item: { type: MenuItemTypeEnum }) => item.type === MenuItemTypeEnum.APPETIZER,
+            );
+            const mainCourses = menuItems.filter(
+              (item: { type: MenuItemTypeEnum }) => item.type === MenuItemTypeEnum.MAIN_COURSE,
+            );
+            const desserts = menuItems.filter(
+              (item: { type: MenuItemTypeEnum }) => item.type === MenuItemTypeEnum.DESSERT,
+            );
+            return [...appetizers, ...mainCourses, ...desserts];
+          }),
+        ),
     );
   }
 
