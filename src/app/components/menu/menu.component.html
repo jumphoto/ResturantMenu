@@ -1,10 +1,34 @@
 <div class="menu-container">
   <div class="menu-column">
-    <img src="assets\proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
+    <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
+
+    <div class="menu-section">
+      <h2>Appetizers</h2>
+      <ul class="menu-list">
+        <li *ngFor="let item of appetizers" class="menu-item">{{ item.name }}, {{item.id}}, {{item.price}}</li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h2>Main Courses</h2>
+      <ul class="menu-list">
+        <li *ngFor="let item of mainCourses" class="menu-item">{{ item.name }}, {{item.id}}, {{item.price}}</li>
+      </ul>
+    </div>
+
+    <div class="menu-section">
+      <h2>Desserts</h2>
+      <ul class="menu-list">
+        <li *ngFor="let item of desserts" class="menu-item">{{ item.name }}, {{item.id}}, {{item.price}}</li>
+      </ul>
+    </div>
   </div>
+
   <div class="verticle-line"></div>
+
   <div class="float-right">
-    <img src="assets\proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
+    <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
   </div>
+
   <button class="close-menu-btn" (click)="closeMenu()">Close</button>
 </div>
