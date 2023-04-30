@@ -2,10 +2,12 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { CoverComponent } from '../cover/cover.component';
 import { Router } from '@angular/router';
-import { MenuItem, MenuItemTypeEnum } from 'src/app/modules/menu-item';
+import { MenuItem, MenuItemMetadata, MenuItemTypeEnum } from 'src/app/modules/menu-item';
 import { BackendService } from 'src/app/services/backend.service';
 import { getRandomNumberBetween } from 'src/app/utils/common-functions';
 import { delay, lastValueFrom, of } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { MenuDialogComponent } from '../menu-dialog/menu-dialog.component';
 
 @Component({
   selector: 'app-menu',
@@ -13,6 +15,7 @@ import { delay, lastValueFrom, of } from 'rxjs';
   styleUrls: ['./menu.component.scss'],
   standalone: true,
   imports: [CommonModule, CoverComponent],
+  providers: [MatDialog],
 })
 export class MenuComponent implements OnInit {
   restaurantHistory: string | null = null;
@@ -21,8 +24,9 @@ export class MenuComponent implements OnInit {
     mainCourses: [],
     desserts: [],
   };
+  menuItemsMetadata: Record<string, MenuItemMetadata> = {};
 
-  constructor(private router: Router, private backendService: BackendService) {}
+  constructor(private router: Router, private backendService: BackendService, private dialog: MatDialog) {}
 
   ngOnInit(): void {
     this.backendService.fetchMenuItems().then((menuItems: any[]) => {
@@ -41,6 +45,19 @@ export class MenuComponent implements OnInit {
     lastValueFrom(of('Restaurant history data').pipe(delay(serverDelay)))
       .then((data) => (this.restaurantHistory = data))
       .catch((error) => console.log(error));
+  }
+
+  openModal(item: MenuItem) {
+    this.backendService
+      .fetchMenuItemMetadata(item.id)
+      .then((metadata: MenuItemMetadata) => {
+        this.menuItemsMetadata[item.id] = metadata;
+        const dialogRef = this.dialog.open(MenuDialogComponent, {
+          data: { item, metadata, menuItems: this.menuItems },
+        });
+      })
+      .catch((error) => console.log(error));
+    console.log(this.menuItemsMetadata);
   }
 
   closeMenu() {
