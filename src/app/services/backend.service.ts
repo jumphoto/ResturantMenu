@@ -129,7 +129,6 @@ export class BackendService {
         ),
     );
   }
-
   /**
    *
    * @returns Menu items corresponding to the chef's specials
@@ -161,4 +160,28 @@ export class BackendService {
 
     return lastValueFrom(of(this.#restaurantHistory).pipe(delay(serverDelay)));
   }
+  // async fetchRestaurantHistory() {
+  //   try {
+  //     const serverDelay = getRandomNumberBetween(1000, 2000);
+  //     const data = await lastValueFrom(of('Restaurant history data').pipe(delay(serverDelay))).toPromise();
+  //     this.#restaurantHistory = data;
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }
+  // fetchRestaurantHistory() {
+  //   const serverDelay = getRandomNumberBetween(1000, 2000);
+  //   lastValueFrom(of('Restaurant history data').pipe(delay(serverDelay)))
+  //     .then((data) => (this.#restaurantHistory = data))
+
+  //     .catch((error) => console.log(error));
+  //   console.log(this.#restaurantHistory);
+  // }
+  // fetchRestaurantHistory(): Promise<string> {
+  //   const serverDelay = getRandomNumberBetween(1000, 2000);
+  //   return lastValueFrom(of('Restaurant history data').pipe(delay(serverDelay)))
+  //     .toPromise()
+  //     .then((data: string) => (this.#restaurantHistory = data))
+  //     .catch((error: any) => console.log(error));
+  // }
 }
