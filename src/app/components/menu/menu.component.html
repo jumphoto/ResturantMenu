@@ -11,6 +11,7 @@
         </li>
       </ul>
     </div>
+
     <div class="menu-section">
 
       <h2>Main Courses</h2>
@@ -20,19 +21,27 @@
         </li>
       </ul>
     </div>
-    <div class="menu-section">
 
-      <h2>Desserts</h2>
-      <ul>
-        <li *ngFor="let dessert of menuItems.desserts">
-          {{ dessert.name }} - {{ dessert.price }}
-        </li>
-      </ul>
-    </div>
+    <div class="verticle-line"></div>
 
   </div>
-  <div class="verticle-line"></div>
+  <div class="menu-column-right">
 
+    <div class="menu-section-restuarant">
+      <h2>Desserts</h2>
+      <div *ngIf="menuItems && restaurantHistory">
+        <ul>
+          <li *ngFor="let dessert of menuItems.desserts">
+            {{ dessert.name }} - {{ dessert.price }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="menu-section">
+      <h2>Restaurant History</h2>
+      <p>{{ restaurantHistory }}</p>
+    </div>
+  </div>
   <div class="float-right">
     <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
   </div>
