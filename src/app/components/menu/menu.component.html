@@ -3,27 +3,34 @@
     <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
 
     <div class="menu-section">
+
       <h2>Appetizers</h2>
-      <ul class="menu-list">
-        <li *ngFor="let item of appetizers" class="menu-item">{{ item.name }}, {{item.id}}, {{item.price}}</li>
+      <ul>
+        <li *ngFor="let appetizer of menuItems.appetizers">
+          {{ appetizer.name }} - {{ appetizer.price }}
+        </li>
       </ul>
     </div>
-
     <div class="menu-section">
+
       <h2>Main Courses</h2>
-      <ul class="menu-list">
-        <li *ngFor="let item of mainCourses" class="menu-item">{{ item.name }}, {{item.id}}, {{item.price}}</li>
+      <ul>
+        <li *ngFor="let mainCourse of menuItems.mainCourses">
+          {{ mainCourse.name }} - {{ mainCourse.price }}
+        </li>
       </ul>
     </div>
-
     <div class="menu-section">
+
       <h2>Desserts</h2>
-      <ul class="menu-list">
-        <li *ngFor="let item of desserts" class="menu-item">{{ item.name }}, {{item.id}}, {{item.price}}</li>
+      <ul>
+        <li *ngFor="let dessert of menuItems.desserts">
+          {{ dessert.name }} - {{ dessert.price }}
+        </li>
       </ul>
     </div>
-  </div>
 
+  </div>
   <div class="verticle-line"></div>
 
   <div class="float-right">
