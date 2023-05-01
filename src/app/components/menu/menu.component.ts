@@ -6,7 +6,6 @@ import { MenuItem, MenuItemMetadata, MenuItemTypeEnum } from 'src/app/modules/me
 import { BackendService } from 'src/app/services/backend.service';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuDialogComponent } from '../menu-dialog/menu-dialog.component';
-import { ApiService } from 'src/app/services/api.service';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from '../loader/loader.component';
 
@@ -16,7 +15,7 @@ import { LoaderComponent } from '../loader/loader.component';
   styleUrls: ['./menu.component.scss'],
   standalone: true,
   imports: [CommonModule, CoverComponent, HttpClientModule, LoaderComponent],
-  providers: [MatDialog, ApiService],
+  providers: [MatDialog],
 })
 export class MenuComponent implements OnInit {
   restaurantHistory: string | null = null;
