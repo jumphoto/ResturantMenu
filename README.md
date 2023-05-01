@@ -15,11 +15,9 @@ Beneath the dessert section, there is a "Restaurant History" section that displa
 Modal
 
 There is a modal that displays all information for a selected menu item, including general menu item information and metadata.
-Additional Details
+Additional Details. The menu is outlined to indicate the 21:9 area.The menu items and history section only display when both have fully loaded.
 
-    The menu is outlined to indicate the 21:9 area.
-    The menu items and history section only display when both have fully loaded.
-    Git is used to make reasonable commits.
+Git is used to make reasonable commits.
 
 Installation
 
