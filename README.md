@@ -22,8 +22,18 @@ Git is used to make reasonable commits.
 Installation
 
 To run the project locally, clone the repository and install the necessary dependencies
+Angular CLI: 15.2.1
+Node: 16.14.0
 
-Once open the instructions will be visible on the intructions.html file
+Run: 
+ng v
+node -v
+
+nmp i
+ng build 
+ng serve
+
+Once open the instructions will be visible on the instructions.html file
 
 TypeScript 56.0%
 HTML 22.2%
