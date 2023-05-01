@@ -12,7 +12,10 @@ import { HttpClientModule } from '@angular/common/http';
 })
 export class CoverComponent {
   constructor(private router: Router) {}
-
+  /**
+   *
+   * @returns navivagtion path on nav bar
+   */
   openMenu() {
     this.router.navigate(['/menu']);
   }

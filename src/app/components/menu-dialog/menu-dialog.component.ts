@@ -6,23 +6,35 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   selector: 'app-menu-item-dialog',
   standalone: true,
   imports: [CommonModule],
+  styleUrls: ['./menu-dialog.component.scss'],
   template: `
-    <h2>{{ data.item.name }}</h2>
-    <p>{{ data.item.description }}</p>
-    <p>{{ data.item.price }}</p>
-    <ul>
-      <li *ngFor="let ingredient of data.metadata.ingredients">{{ ingredient }}</li>
+    <div class="mat-dialog-container">
+      <h2 class="menuTitle">{{ data.item.name }}</h2>
+      <p>{{ data.item.description }}</p>
+      <p>{{ data.item.price }}</p>
+      <ul>
+        <li *ngFor="let ingredient of data.metadata.ingredients">{{ ingredient }}</li>
 
-      <img [src]="data.metadata.imageUrl" />
-    </ul>
-    <button
-      mat-button
-      (click)="close()"
-    >
-      Close
-    </button>
+        <img
+          class="metaImage"
+          [src]="data.metadata.imageUrl"
+        />
+      </ul>
+      <button
+        class="close-menu-btn"
+        mat-button
+        (click)="close()"
+      >
+        Close
+      </button>
+    </div>
   `,
 })
+
+/**
+ *
+ * @returns close dialog
+ */
 export class MenuDialogComponent {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any, private dialogRef: MatDialogRef<MenuDialogComponent>) {}
 

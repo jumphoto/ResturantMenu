@@ -1,0 +1,29 @@
+.mat-dialog-container {
+  background-color: #8732c8;
+  align-content: center;
+  padding-left: 20px;
+  color: white;
+}
+
+.metaImage {
+  max-width: 50%;
+  height: 50%;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.menuTitle {
+  color: white;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.close-menu-btn {
+  background-color: #5bb780;
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  justify-content: right;
+}
