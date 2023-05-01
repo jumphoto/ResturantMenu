@@ -6,7 +6,6 @@
 
   <div class="menu-content">
     <div class="menu-section">
-
       <h2>Appetizers</h2>
       <ul>
         <li *ngFor="let appetizer of menuItems.appetizers" (click)="openModal(appetizer)">
@@ -16,7 +15,6 @@
     </div>
 
     <div class="menu-section">
-
       <h2>Main Courses</h2>
       <ul>
         <li *ngFor="let mainCourse of menuItems.mainCourses" (click)="openModal(mainCourse)">
@@ -39,7 +37,17 @@
       <h2>Restaurant History</h2>
       <p>{{ restaurantHistory }}</p>
     </div>
+
+    <div class="menu-section">
+      <h2>Chef's Specials Not A Requirement </h2>
+      <ul>
+        <li *ngFor="let chefsSpecials of menuItems.chefsSpecials" (click)="openModal(chefsSpecials)">
+          {{ chefsSpecials.name }} - {{ chefsSpecials.price }}
+        </li>
+      </ul>
+    </div>
   </div>
+
   <div class="controls">
     <button class="close-menu-btn" (click)="closeMenu()">Close</button>
   </div>

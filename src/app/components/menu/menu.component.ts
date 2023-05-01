@@ -19,37 +19,44 @@ import { LoaderComponent } from '../loader/loader.component';
 })
 export class MenuComponent implements OnInit {
   restaurantHistory: string | null = null;
-  menuItems: { appetizers: MenuItem[]; mainCourses: MenuItem[]; desserts: MenuItem[] } = {
+  menuItems: { appetizers: MenuItem[]; mainCourses: MenuItem[]; desserts: MenuItem[]; chefsSpecials: MenuItem[] } = {
     appetizers: [],
     mainCourses: [],
     desserts: [],
+    chefsSpecials: [],
   };
   menuItemsMetadata: Record<string, MenuItemMetadata> = {};
   menuDataLoaded: boolean = false;
+  chefsSpecials: MenuItem[] = [];
 
-  constructor(
-    private router: Router,
-    private backendService: BackendService,
-    private dialog: MatDialog, // public imageUrl: string,
-  ) {}
-
+  constructor(private router: Router, private backendService: BackendService, private dialog: MatDialog) {}
+  /**
+   *
+   * @returns fetchMenuItem,fetchRestaurantHistory,fetchChefsSpecials using the Enums as refrence
+   */
   ngOnInit(): void {
     this.backendService.fetchMenuItems().then((menuItems: any[]) => {
       const appetizers = menuItems.filter((item) => item.type === MenuItemTypeEnum.APPETIZER);
       const mainCourses = menuItems.filter((item) => item.type === MenuItemTypeEnum.MAIN_COURSE);
       const desserts = menuItems.filter((item) => item.type === MenuItemTypeEnum.DESSERT);
+      const chefsSpecials = menuItems.filter((item) => item.type === MenuItemTypeEnum.CHEFS_SPECIAL);
 
-      this.menuItems = { appetizers, mainCourses, desserts };
+      this.menuItems = { appetizers, mainCourses, desserts, chefsSpecials };
 
       this.backendService.fetchRestaurantHistory().then((val) => {
         this.restaurantHistory = val;
+      });
 
-        //done loaded
+      this.backendService.fetchChefsSpecials().then((menuItems) => {
+        this.menuItems.chefsSpecials = menuItems;
         this.menuDataLoaded = true;
       });
     });
   }
-
+  /**
+   *
+   * @returns fetchMenuItemMetadata to display general menu item information and the metadata for the selected menu item
+   */
   openModal(item: MenuItem) {
     this.backendService
       .fetchMenuItemMetadata(item.id)
