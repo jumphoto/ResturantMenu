@@ -1,5 +1,5 @@
-<div class="menu-container">
-  <div class="menu-column">
+<div class="menu-container" *ngIf="menuDataLoaded; else loader">
+  <div class="menu-column-left">
     <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
 
     <div class="menu-section">
@@ -22,7 +22,6 @@
       </ul>
     </div>
 
-    <div class="verticle-line"></div>
 
   </div>
   <div class="menu-column-right">
@@ -48,3 +47,9 @@
 
   <button class="close-menu-btn" (click)="closeMenu()">Close</button>
 </div>
+
+<ng-template #loader>
+  <div class="loader">
+    <app-loader></app-loader>
+  </div>
+</ng-template>

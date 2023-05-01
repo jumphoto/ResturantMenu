@@ -4,18 +4,19 @@ import { CoverComponent } from '../cover/cover.component';
 import { Router } from '@angular/router';
 import { MenuItem, MenuItemMetadata, MenuItemTypeEnum } from 'src/app/modules/menu-item';
 import { BackendService } from 'src/app/services/backend.service';
-import { getRandomNumberBetween } from 'src/app/utils/common-functions';
-import { delay, lastValueFrom, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { MenuDialogComponent } from '../menu-dialog/menu-dialog.component';
+import { ApiService } from 'src/app/services/api.service';
+import { HttpClientModule } from '@angular/common/http';
+import { LoaderComponent } from '../loader/loader.component';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
   standalone: true,
-  imports: [CommonModule, CoverComponent],
-  providers: [MatDialog],
+  imports: [CommonModule, CoverComponent, HttpClientModule, LoaderComponent],
+  providers: [MatDialog, ApiService],
 })
 export class MenuComponent implements OnInit {
   restaurantHistory: string | null = null;
@@ -25,8 +26,13 @@ export class MenuComponent implements OnInit {
     desserts: [],
   };
   menuItemsMetadata: Record<string, MenuItemMetadata> = {};
+  menuDataLoaded: boolean = false;
 
-  constructor(private router: Router, private backendService: BackendService, private dialog: MatDialog) {}
+  constructor(
+    private router: Router,
+    private backendService: BackendService,
+    private dialog: MatDialog, // public imageUrl: string,
+  ) {}
 
   ngOnInit(): void {
     this.backendService.fetchMenuItems().then((menuItems: any[]) => {
@@ -35,16 +41,14 @@ export class MenuComponent implements OnInit {
       const desserts = menuItems.filter((item) => item.type === MenuItemTypeEnum.DESSERT);
 
       this.menuItems = { appetizers, mainCourses, desserts };
+
+      this.backendService.fetchRestaurantHistory().then((val) => {
+        this.restaurantHistory = val;
+
+        //done loaded
+        this.menuDataLoaded = true;
+      });
     });
-
-    this.fetchRestaurantHistory();
-  }
-
-  fetchRestaurantHistory() {
-    const serverDelay = getRandomNumberBetween(1000, 2000);
-    lastValueFrom(of('Restaurant history data').pipe(delay(serverDelay)))
-      .then((data) => (this.restaurantHistory = data))
-      .catch((error) => console.log(error));
   }
 
   openModal(item: MenuItem) {

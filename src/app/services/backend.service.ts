@@ -156,12 +156,9 @@ export class BackendService {
    * This is just a "back in 1900s we opened, and blah blah"
    */
 
-  fetchRestaurantHistory() {
+  fetchRestaurantHistory(): Promise<string> {
     const serverDelay = getRandomNumberBetween(1000, 2000);
-    lastValueFrom(of('Restaurant history data').pipe(delay(serverDelay)))
-      .then((data) => (this.#restaurantHistory = data))
 
-      .catch((error) => console.log(error));
-    console.log(this.#restaurantHistory);
+    return lastValueFrom(of(this.#restaurantHistory).pipe(delay(serverDelay)));
   }
 }
