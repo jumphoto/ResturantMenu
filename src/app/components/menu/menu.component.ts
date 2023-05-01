@@ -60,7 +60,6 @@ export class MenuComponent implements OnInit {
         });
       })
       .catch((error) => console.log(error));
-    console.log(this.menuItemsMetadata);
   }
 
   closeMenu() {

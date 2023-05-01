@@ -1,7 +1,10 @@
 <div class="menu-container" *ngIf="menuDataLoaded; else loader">
-  <div class="menu-column-left">
-    <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
+  <div class="logo-container">
+    <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo-left">
+    <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo-right">
+  </div>
 
+  <div class="menu-content">
     <div class="menu-section">
 
       <h2>Appetizers</h2>
@@ -22,11 +25,7 @@
       </ul>
     </div>
 
-
-  </div>
-  <div class="menu-column-right">
-
-    <div class="menu-section-restuarant">
+    <div class="menu-section">
       <h2>Desserts</h2>
       <div *ngIf="menuItems && restaurantHistory">
         <ul>
@@ -41,11 +40,9 @@
       <p>{{ restaurantHistory }}</p>
     </div>
   </div>
-  <div class="float-right">
-    <img src="assets/proquo-logo.svg" alt="ProQuo AI Logo" class="logo">
+  <div class="controls">
+    <button class="close-menu-btn" (click)="closeMenu()">Close</button>
   </div>
-
-  <button class="close-menu-btn" (click)="closeMenu()">Close</button>
 </div>
 
 <ng-template #loader>

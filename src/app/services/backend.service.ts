@@ -147,9 +147,7 @@ export class BackendService {
   fetchMenuItemMetadata(menuItemId: string): Promise<MenuItemMetadata> {
     const serverDelay = getRandomNumberBetween(1000, 2000);
 
-    const ingredients = Array.from({ length: 6 }, (_, i: number) => `Ingredient number ${i + 1}`);
-
-    return lastValueFrom(of(new MenuItemMetadata(ingredients, '')).pipe(delay(serverDelay)));
+    return lastValueFrom(of(this.#menuItemsMetadata[menuItemId]).pipe(delay(serverDelay)));
   }
 
   /**
@@ -157,7 +155,7 @@ export class BackendService {
    */
 
   fetchRestaurantHistory(): Promise<string> {
-    const serverDelay = getRandomNumberBetween(1000, 2000);
+    const serverDelay = 0;
 
     return lastValueFrom(of(this.#restaurantHistory).pipe(delay(serverDelay)));
   }

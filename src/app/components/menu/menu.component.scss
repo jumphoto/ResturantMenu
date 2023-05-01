@@ -1,50 +1,68 @@
 // 21:9 aspect ratio that is outlined to indicate this area.
 .menu-container {
-  width: 100%;
+  width: calc(100% - 40px);
   aspect-ratio: 21/9;
   border: 2px solid red;
   display: flex;
+  flex-direction: column;
   flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: space-between;
-}
+  align-content: center;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px;
 
-.menu-column-left {
-  width: calc(50% - 20px);
-  margin: 10px;
-  flex: 0 0 calc(50% - 20px);
-  overflow: auto;
-}
+  .logo-container {
+    img {
+      width: 120px;
+      height: 40px;
+    }
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
 
-.menu-column-right {
-  margin: 50px;
-  overflow: auto;
-}
+  .menu-content {
+    width: 100%;
+    max-height: 100%;
 
-.menu-section {
-  margin-bottom: 20px;
-}
-.menu-section-restuarant {
-  margin-bottom: 30px;
-}
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: flex-start;
+    justify-content: flex-start;
+    align-items: flex-start;
 
-.menu-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-}
+    .menu-section {
+      width: 50%;
+      padding: 10px;
+      flex: 1;
+    }
+  }
 
-.close-menu-btn {
-  position: fixed;
-  bottom: 150px;
-  right: 20px;
-  background-color: #8732c8;
-  color: #000;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
+  .controls {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: flex-end;
+    align-items: flex-end;
+    padding: 10px;
+
+    .close-menu-btn {
+      background-color: #8732c8;
+      color: #000;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+  }
 }
 
 .loader {
@@ -56,4 +74,30 @@
   align-items: center;
   width: 90vw;
   height: 90vh;
+}
+
+@media only screen and (max-width: 1200px) {
+  .menu-container {
+    height: auto;
+    aspect-ratio: initial;
+
+    .logo-container {
+      img {
+        width: 120px;
+        height: 40px;
+      }
+
+      :nth-child(1) {
+        display: none;
+      }
+    }
+
+    .menu-content {
+      flex-wrap: nowrap;
+
+      .menu-section {
+        width: 100%;
+      }
+    }
+  }
 }
